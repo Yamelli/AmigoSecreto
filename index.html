@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amigo Secreto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            background-color: #fdf6e3;
+        }
+        .header {
+            background-color: #1e40af;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .container {
+            padding: 20px;
+        }
+        input {
+            width: 60%;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #d9534f;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #c9302c;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #f0f0f0;
+            margin: 5px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Amigo Secreto</div>
+    <div class="container">
+        <h2>Digite el nombre de sus amigos</h2>
+        <input type="text" id="nombre" placeholder="Digite un nombre">
+        <button onclick="agregarNombre()">Adicionar</button>
+        <ul id="listaNombres"></ul>
+        <button onclick="sortearAmigo()">🎲 Sortear amigo</button>
+        <h3 id="resultado"></h3>
+    </div>
+    <script>
+        let nombres = [];
+
+        function agregarNombre() {
+            let nombre = document.getElementById("nombre").value.trim();
+            if (nombre === "") {
+                alert("Por favor, ingresa un nombre válido.");
+                return;
+            }
+            nombres.push(nombre);
+            document.getElementById("listaNombres").innerHTML += `<li>${nombre}</li>`;
+            document.getElementById("nombre").value = "";
+        }
+
+        function sortearAmigo() {
+            if (nombres.length === 0) {
+                alert("Agrega al menos un nombre antes de sortear.");
+                return;
+            }
+            let ganador = nombres[Math.floor(Math.random() * nombres.length)];
+            document.getElementById("resultado").innerText = "🎉 El amigo secreto es: " + ganador;
+        }
+    </script>
+</body>
+</html>
